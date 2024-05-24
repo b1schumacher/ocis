@@ -46,6 +46,7 @@ func DefaultConfig() *config.Config {
 		WopiApp: config.WopiApp{
 			Addr:     "https://127.0.0.1:8080",
 			Insecure: false,
+			Provider: "Microsoft",
 		},
 		CS3Api: config.CS3Api{
 			Gateway: config.Gateway{
