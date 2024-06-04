@@ -74,9 +74,10 @@ Feature: Restoring space
     When user "Brian" tries to restore a disabled space "restore a space" owned by user "Alice"
     Then the HTTP status code should be "404"
     Examples:
-      | space-role   |
-      | Space Viewer |
-      | Space Editor |
+      | space-role    |
+      | Space Viewer  |
+      | Space Editor  |
+      | Secure viewer |
 
 
   Scenario Outline: user with role user and user light cannot restore space

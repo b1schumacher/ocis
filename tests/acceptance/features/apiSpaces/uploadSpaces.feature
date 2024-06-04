@@ -28,10 +28,11 @@ Feature: Upload files into a space
     And for user "Brian" the space "Project Ceres" <should-or-not> contain these entries:
       | mainFolder |
     Examples:
-      | space-role   | http-status-code | should-or-not |
-      | Manager      | 201              | should        |
-      | Space Editor | 201              | should        |
-      | Space Viewer | 403              | should not    |
+      | space-role    | http-status-code | should-or-not |
+      | Manager       | 201              | should        |
+      | Space Editor  | 201              | should        |
+      | Space Viewer  | 403              | should not    |
+      | Secure viewer | 403              | should not    |
 
 
   Scenario Outline: user uploads a file in shared space via the Graph API
@@ -45,10 +46,11 @@ Feature: Upload files into a space
     And for user "Brian" the space "Project Ceres" <should-or-not> contain these entries:
       | test.txt |
     Examples:
-      | space-role   | http-status-code | should-or-not |
-      | Manager      | 201              | should        |
-      | Space Editor | 201              | should        |
-      | Space Viewer | 403              | should not    |
+      | space-role    | http-status-code | should-or-not |
+      | Manager       | 201              | should        |
+      | Space Editor  | 201              | should        |
+      | Space Viewer  | 403              | should not    |
+      | Secure viewer | 403              | should not    |
 
 
   Scenario: user can create subfolders in a space via the Graph API

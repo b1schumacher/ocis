@@ -47,10 +47,11 @@ Feature: Propfind test
       | oc:privatelink |                  |
       | oc:size        | 12               |
     Examples:
-      | space-role   | oc-permission |
-      | Manager      | RDNVCKZP      |
-      | Space Editor | DNVCK         |
-      | Space Viewer |               |
+      | space-role    | oc-permission |
+      | Manager       | RDNVCKZP      |
+      | Space Editor  | DNVCK         |
+      | Space Viewer  |               |
+      | Secure viewer | X             |
 
 
   Scenario Outline: space member with a different role checks the PROPFIND request of the folder in the space
@@ -70,10 +71,11 @@ Feature: Propfind test
       | oc:permissions | <oc-permission>   |
       | oc:size        | 0                 |
     Examples:
-      | space-role   | oc-permission |
-      | Manager      | RDNVCKZP      |
-      | Space Editor | DNVCK         |
-      | Space Viewer |               |
+      | space-role    | oc-permission |
+      | Manager       | RDNVCKZP      |
+      | Space Editor  | DNVCK         |
+      | Space Viewer  |               |
+      | Secure viewer | X             |
 
 
   Scenario Outline: space member with a different role checks the PROPFIND request of the sub-folder in the space
@@ -93,10 +95,11 @@ Feature: Propfind test
       | oc:permissions | <oc-permission>                         |
       | oc:size        | 0                                       |
     Examples:
-      | space-role   | oc-permission |
-      | Manager      | RDNVCKZP      |
-      | Space Editor | DNVCK         |
-      | Space Viewer |               |
+      | space-role    | oc-permission |
+      | Manager       | RDNVCKZP      |
+      | Space Editor  | DNVCK         |
+      | Space Viewer  |               |
+      | Secure viewer | X             |
 
 
   Scenario Outline: space member with a different role checks the PROPFIND request of the file in the space
@@ -116,7 +119,8 @@ Feature: Propfind test
       | oc:permissions | <oc-permission>     |
       | oc:size        | 12                  |
     Examples:
-      | space-role   | oc-permission |
-      | Manager      | RDNVWZP       |
-      | Space Editor | DNVW          |
-      | Space Viewer |               |
+      | space-role    | oc-permission |
+      | Manager       | RDNVWZP       |
+      | Space Editor  | DNVW          |
+      | Space Viewer  |               |
+      | Secure viewer | X             |

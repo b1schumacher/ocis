@@ -551,3 +551,18 @@ Feature: lock files
       | new              | exclusive  |
       | spaces           | shared     |
       | spaces           | exclusive  |
+
+
+  Scenario: try to lock file shared in the project space for Secure Viewer Role
+    Given the administrator has assigned the role "Space Admin" to user "Alice" using the Graph API
+    And using spaces DAV path
+    And user "Alice" has created a space "Project" with the default quota using the Graph API
+    And user "Alice" has uploaded a file inside space "Project" with content "some content" to "textfile.txt"
+    And user "Alice" has sent the following space share invitation:
+      | space           | Project       |
+      | sharee          | Brian         |
+      | shareType       | user          |
+      | permissionsRole | Secure viewer |
+    When user "Brian" tries to lock file "textfile.txt" inside the space "Project" using the WebDAV API setting the following properties
+      | lockscope | exclusive |
+    Then the HTTP status code should be "403"

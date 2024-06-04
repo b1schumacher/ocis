@@ -3657,6 +3657,7 @@ class SpacesContext implements Context {
 		$this->featureContext->setResponse(
 			$this->sendPropfindRequestToSpace($user, $spaceName, "", null, $folderDepth)
 		);
+        print_r ($this->featureContext->getResponse ()->getBody ()->getContents ());
 	}
 
 	/**

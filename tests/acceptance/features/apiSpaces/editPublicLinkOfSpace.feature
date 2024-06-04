@@ -81,7 +81,8 @@ Feature: A manager of the space can edit public link
     Then the HTTP status code should be "<http-status-code>"
     And the OCS status code should be "<ocs-status-code>"
     Examples:
-      | space-role   | http-status-code | ocs-status-code |
-      | Manager      | 200              | 200             |
-      | Space Editor | 401              | 997             |
-      | Space Viewer | 401              | 997             |
+      | space-role    | http-status-code | ocs-status-code |
+      | Manager       | 200              | 200             |
+      | Space Editor  | 401              | 997             |
+      | Space Viewer  | 401              | 997             |
+      | Secure viewer | 401              | 997             |

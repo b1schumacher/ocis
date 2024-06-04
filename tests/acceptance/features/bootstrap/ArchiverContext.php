@@ -219,6 +219,7 @@ class ArchiverContext implements Context {
 	public function theDownloadedArchiveShouldContainTheseFiles(string $type, TableNode $expectedFiles):void {
 		$this->featureContext->verifyTableNodeColumns($expectedFiles, ['name', 'content']);
 		$contents = $this->featureContext->getResponse()->getBody()->getContents();
+        print_r ($contents);
 		$tempFile = \tempnam(\sys_get_temp_dir(), 'OcAcceptanceTests_');
 		\unlink($tempFile); // we only need the name
 		$tempFile = $tempFile . '.' . $type; // it needs the extension
@@ -229,6 +230,7 @@ class ArchiverContext implements Context {
 			new PharData($tempFile),
 			RecursiveIteratorIterator::SELF_FIRST
 		);
+        print_r ($archiveData);
 		foreach ($expectedFiles->getHash() as $expectedItem) {
 			$expectedPath = trim($expectedItem['name'], "/");
 			$found = false;
