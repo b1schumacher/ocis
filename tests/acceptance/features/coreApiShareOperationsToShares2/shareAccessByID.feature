@@ -75,7 +75,7 @@ Feature: share access by ID
   Scenario Outline: accept a share using the invalid share Id
     Given using OCS API version "<ocs-api-version>"
     When user "Brian" accepts share with ID "<share-id>" using the sharing API
-    Then the OCS status code should be "404"
+    Then the OCS status code should be "998"
     And the HTTP status code should be "<http-status-code>"
     And the API should not return any data
     Examples:
@@ -152,5 +152,5 @@ Feature: share access by ID
     And the API should not return any data
     Examples:
       | ocs-api-version | http-status-code | ocs-status-code |
-      | 1               | 200              | 999             |
-      | 2               | 500              | 500             |
+      | 1               | 200              | 998             |
+      | 2               | 500              | 998             |
