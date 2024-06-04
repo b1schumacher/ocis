@@ -23,13 +23,13 @@ sequenceDiagram
     links Client: {"web": "https://owncloud.dev/clients/web/", "RClone": "https://owncloud.dev/clients/rclone/"}
     link Graph: Documentation @ https://owncloud.dev/extensions/graph/
 
-    Note left of Client:  First, a clients looks<br/>up the spaces a user has access to
+    Note left of Client:  First, a clients looks up the spaces a user has access to
     opt space lookup
         Client->>+Graph: GET /me/drives
-        Graph-->>-Client: 200 OK JSON list of spaces, say A, B and C,<br/> each with a dedicated webDavURL, etag and quota
+        Graph-->>-Client: 200 OK JSON list of spaces, say A, B and C, each with a dedicated webDavURL, etag and quota
     end
 
-    Note left of Client: Then it can do a parallel<br/>sync discovery on spaces<br/>whose etag changed
+    Note left of Client: Then it can do a parallel sync discovery on spaces whose etag changed
     par Client to Space A
         Client->>+SpaceA: PROPFIND {webDavURL for Space A}
         SpaceA-->>-Client: 207 Multistatus PROPFIND response
@@ -56,9 +56,9 @@ sequenceDiagram
     participant ocDAV
     participant StorageProvider
 
-    Note right of Client: {spaceid} identifies the space<br>{relative/path} is relative to the space root
+    Note right of Client: {spaceid} identifies the space {relative/path} is relative to the space root
         Client->>+ocDAV: PROPFIND /dav/space/{spaceid}/{relative/path}
-    Note right of ocDAV: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of ocDAV: translate ownCloud flavoured webdav into CS3 API requests
         ocDAV->>+StorageProvider: ListContainer({spaceid}, path: {relative/path})
         StorageProvider-->>-ocDAV: []ResourceInfo
         ocDAV-->>-Client: 207 Multistatus
@@ -80,12 +80,12 @@ sequenceDiagram
     participant ocDAV1 as ocDAV [a-k]
     participant ocDAV2 as ocDAV [l-z]
 
-    Note right of Client: {spaceid} identifies the space<br>{relative/path} is relative to the space root
+    Note right of Client: {spaceid} identifies the space {relative/path} is relative to the space root
         Client->>+proxy: PROPFIND /dav/space/{spaceid}/{relative/path}
 
     alt username starting with a-k
         proxy->>+ocDAV1: PROPFIND /dav/space/{spaceid}/{relative/path}
-    Note right of ocDAV1: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of ocDAV1: translate ownCloud flavoured webdav into CS3 API requests
         ocDAV1-->>-Client: 207 Multistatus
     else username starting with l-z
         proxy->>+ocDAV2: PROPFIND /dav/space/{spaceid}/{relative/path}
@@ -108,12 +108,12 @@ sequenceDiagram
     participant StorageProvider1 as StorageProvider [a-k]
     participant StorageProvider2 as StorageProvider [l-z]
 
-    Note right of ocDAV: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of ocDAV: translate ownCloud flavoured webdav into CS3 API requests
         ocDAV->>+Gateway: ListContainer({spaceid}, path: {relative/path})
-    Note right of Gateway: find address of the storage provider<br>that is responsible for the space
+    Note right of Gateway: find address of the storage provider that is responsible for the space
         Gateway->>+StorageRegistry: ListStorageProviders({spaceid})
         StorageRegistry-->>-Gateway: []ProviderInfo
-    Note right of Gateway: forward request to<br>correct storage provider
+    Note right of Gateway: forward request to correct storage provider
     alt username starting with a-k
         Gateway->>+StorageProvider1: ListContainer({spaceid}, path: {relative/path})
         StorageProvider1-->>-Gateway: []ResourceInfo
@@ -141,9 +141,9 @@ sequenceDiagram
     participant Gateway
 
     opt old /dav/files/{username} endpoint with username and a path relative to the users home
-    Note right of Client: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of Client: translate ownCloud flavoured webdav into CS3 API requests
         Client->>+ocDAV: PROPFIND /dav/files/{username}/{relative/path}
-    Note right of ocDAV: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of ocDAV: translate ownCloud flavoured webdav into CS3 API requests
         ocDAV->>+Gateway: GetUser({username})
         Gateway-->>-ocDAV: User
     Note right of ocDAV: build path prefix to user home
@@ -171,7 +171,7 @@ sequenceDiagram
     participant ocDAV
     participant Gateway
 
-    Note right of Client: translate ownCloud flavoured webdav<br>into CS3 API requests
+    Note right of Client: translate ownCloud flavoured webdav into CS3 API requests
     alt old /dav/files/{username} endpoint with username and a path relative to the users home
         Client->>+ocDAV: PROPFIND /dav/files/{username}/{relative/path}
     Note right of ocDAV: look up {username} in URL path
